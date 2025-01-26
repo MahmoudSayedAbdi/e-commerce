@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import axios from "axios";
+import { AuthContext } from "../../Context/AuthContextProvider/AuthContextProvider";
 
 export default function Login() {
+
   // varible
+  let {setToken} = useContext(AuthContext)
   let setHome = useNavigate();
   let [errMassege, setErrMassege] = useState();
   let initialValues = {
@@ -31,6 +34,8 @@ export default function Login() {
     axios
       .post(`${baseUrl}/api/v1/auth/signin`, Data)
       .then((req) => {
+        setToken(req.data.token)
+        localStorage.setItem("token",req.data.token)
         setHome("/");
       })
       .catch((err) => {
