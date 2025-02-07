@@ -16,6 +16,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import NotFound from './Componant/NotFound/NotFound'
 import ProdectDetails from './Componant/ProdectDetails/ProdectDetails'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import CartContextProvider from './Context/CartContextProvider/CartContextProvider'
 
 function App() {
   let router = createBrowserRouter([
@@ -41,12 +42,14 @@ function App() {
 
   return (
     <>
-    
+
 
       <QueryClientProvider client={client}>
         <ReactQueryDevtools></ReactQueryDevtools>
         <AuthContextProvider>
-          <RouterProvider router={router} />
+          <CartContextProvider>
+            <RouterProvider router={router} />
+          </CartContextProvider>
         </AuthContextProvider>
       </QueryClientProvider>
 
