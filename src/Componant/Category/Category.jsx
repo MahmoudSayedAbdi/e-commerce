@@ -7,7 +7,7 @@ export default function Category() {
 
 
   return (
-    <div className='flex flex-wrap'>
+    <div className='flex flex-wrap  my-6 w-10/12 ms-auto'>
       {data?.data?.data?.map((category) => {
         return <div key={category} className='w-4/12 '>
           <img src={category.image} alt={category.name} className='h-96 w-full  ' />

@@ -1,3 +1,11 @@
 -- عمل api و كله شغال
 -- انا وصلت ل ان اطبع الداتاعلي حسب الماب 
--- 
+-- عملت الماب و طبعت ال السله
+-- Num Item Cart عملت العداد لي فوق بعدد السله
+-- Add User Cart 
+-- Delete User Cart 
+-- Clear User Cart
+
+-- لسه ما ذاكرت redux       >> ذاكرتها بس مش طبق ت
+-- introdaction Redux
+-- State or reduser in Redux

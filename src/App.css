@@ -1,6 +1,4 @@
-#root {
 
-}
 
 .logo {
   height: 6em;
@@ -36,4 +34,66 @@
 
 .read-the-docs {
   color: #888;
+}
+
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  margin: 20px;
+}
+
+.email-input {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.email-input input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.email-input button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.payment-partners {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.app-stores {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.app-stores img {
+  margin: 0 10px;
+  height: 40px;
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
 }

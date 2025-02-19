@@ -1,14 +1,17 @@
 
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
+import { CartContext } from '../../Context/CartContextProvider/CartContextProvider'
+import toast, { Toaster } from 'react-hot-toast'
 
 
 export default function ProdectDetails() {
 
     let { id } = useParams()
-    
+    let {addUserCart} =useContext(CartContext)
+    let {setNumCartItem} =useContext(CartContext)
     function diplayImage(e) {
         let ImageSrc = e.target.getAttribute("src")
         document.getElementById("mainImage").setAttribute("src", ImageSrc)
@@ -24,9 +27,23 @@ export default function ProdectDetails() {
     })
 
 
+    function addCart(id) {
+        addUserCart(id).then((req) => {
+          // console.log(req.data.numOfCartItems)
+          setNumCartItem(req.data.numOfCartItems)
+          toast.success('Success Add ');
+        }).catch((err)=>{
+        //   console.log(err)
+          toast.error(err.message);
+    
+        })
+      }
+
+
     return (
 
         <>
+        <Toaster></Toaster>
             {isLoading ?
                 <div className='flex justify-center items-center  h-screen bg-gray-300'>
                     <span className="loader "></span>
@@ -44,6 +61,8 @@ export default function ProdectDetails() {
                                         <img src={el} alt="" />
                                     </div>
                                 })}
+
+                                
                             </div>
 
 
@@ -66,7 +85,7 @@ export default function ProdectDetails() {
                                 <span>{data?.data?.data?.price} EGP</span>
                                 <span><i className='fa-solid fa-star text-yellow-400'></i> {data?.data?.data?.ratingsAverage}</span>
                             </div>
-                            <button className='btn my-2  '>add to cart</button>
+                            <button onClick={()=>{addCart(id)}} className='btn my-2  '>add to cart</button>
 
                         </div>
 

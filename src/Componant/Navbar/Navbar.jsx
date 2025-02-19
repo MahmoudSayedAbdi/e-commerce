@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContextProvider/AuthContextProvider";
+import { CartContext } from "../../Context/CartContextProvider/CartContextProvider";
 export default function Navbar() {
 
-  let { token , setToken} = useContext(AuthContext)
+  let { token, setToken } = useContext(AuthContext)
+  let { numCartItem } = useContext(CartContext)
   let navig = useNavigate()
 
-  function logout(){
+  function logout() {
     localStorage.removeItem("token")
     setToken(null)
     navig("/login")
@@ -51,13 +53,13 @@ export default function Navbar() {
           </button>
           <div className="hidden w-full md:w-9/12 md:block w " id="navbar-default">
             <ul className="font-medium w-full flex flex-col p-4 md:p-0 mt-4 border md:flex-row  rtl:space-x-reverse md:mt-0 md:border-0  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-
+            {/* Page */}
               {token ?
                 <>
                   <li className="md:me-3">
                     <Link
                       to=""
-                      className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                      className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-active md:p-0 dark:text-white md:dark:hover:text-active dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                       aria-current="page"
                     >
                       Home
@@ -66,7 +68,7 @@ export default function Navbar() {
                   <li className="md:me-3">
                     <Link
                       to="cart"
-                      className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                      className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-active md:p-0 dark:text-white md:dark:hover:text-active dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                     >
                       Cart
                     </Link>
@@ -74,7 +76,7 @@ export default function Navbar() {
                   <li className="md:me-3">
                     <Link
                       to="prodect"
-                      className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                      className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-active md:p-0 dark:text-white md:dark:hover:text-active dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                     >
                       Prodect
                     </Link>
@@ -82,7 +84,7 @@ export default function Navbar() {
                   <li className="md:me-3">
                     <Link
                       to="category"
-                      className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                      className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-active md:p-0 dark:text-white md:dark:hover:text-active dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                     >
                       Category
                     </Link>
@@ -90,30 +92,38 @@ export default function Navbar() {
                   <li className="md:me-3">
                     <Link
                       to="brand"
-                      className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                      className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-active md:p-0 dark:text-white md:dark:hover:text-active dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                     >
                       Brand
                     </Link>
                   </li>
                 </>
                 : ""}
-
+              {/* Login And LogOUT */}
               {token ?
-                <li className="ms-auto ">
-                  <Link
-                  onClick={logout}
-                    to="/"
-                    className="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                <>
+                  <li
+                    className="block relative ms-auto py-2 px-3 md:me-5 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 text-active md:p-0 dark:text-white md:dark:hover:text-active dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                   >
-                    Logout
-                  </Link>
-                </li>
+                    <i class="fa-solid fa-cart-shopping text-active"></i>
+                    <span className="absolute text-white -translate-y-3">{numCartItem}</span>
+                  </li>
+                  <li className=" ">
+                    <Link
+                      onClick={logout}
+                      to="/"
+                      className="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 text-active md:p-0 dark:text-white md:dark:hover:text-active dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                    >
+                      Logout
+                    </Link>
+                  </li>
+                </>
                 :
                 <>
                   <li className="ms-auto ">
                     <Link
                       to="login"
-                      className="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                      className="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 text-active md:p-0 dark:text-white md:dark:hover:text-active dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                     >
                       Login
                     </Link>
@@ -121,7 +131,7 @@ export default function Navbar() {
                   <li className="ms-auto md:ms-3">
                     <Link
                       to="singUp"
-                      className="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                      className="block py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 text-active md:p-0 dark:text-white md:dark:hover:text-active dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                     >
                       SingUp
                     </Link>
