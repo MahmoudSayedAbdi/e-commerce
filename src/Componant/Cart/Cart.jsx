@@ -1,9 +1,16 @@
-import { useContext, useEffect, useState } from 'react';
-import { CartContext } from '../../Context/CartContextProvider/CartContextProvider.jsx';
-import { Toaster } from 'react-hot-toast';
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../../Context/CartContextProvider/CartContextProvider.jsx";
+import { Toaster } from "react-hot-toast";
 
 export default function Cart() {
-  const { getUserCart, removeCartItem, clearCartItem, setNumCartItem, updateCartItemCount } = useContext(CartContext);
+  const {
+    getUserCart,
+    removeCartItem,
+    clearCartItem,
+    setNumCartItem,
+    updateCartItemCount,
+  } = useContext(CartContext);
+
   const [CartData, setCartData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -20,21 +27,18 @@ export default function Cart() {
       console.log(err);
     } finally {
       setIsLoading(false);
-
     }
   };
 
   const removeItem = (id) => {
-    removeCartItem(id).then((req) => {
-      if (req.data.status === 'success') {
-        setNumCartItem(req.data.numOfCartItems);
-        setCartData(req.data.data);
-      }
-    }).catch((err) => {
-      console.log(err)
-    })
-
-
+    removeCartItem(id)
+      .then((req) => {
+        if (req.data.status === "success") {
+          setNumCartItem(req.data.numOfCartItems);
+          setCartData(req.data.data);
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   const clearItems = async () => {
@@ -47,32 +51,20 @@ export default function Cart() {
     }
   };
 
-  // const updateCartItem = async (id, count) => {
-  //   try {
-  //     const req = await updateCartItemCount(id, count);
-  //     setCartData(req.data.data);
-  //     setNumCartItem(req.data.numOfCartItems);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
-  function updateCartItem(id, count) {  
-    updateCartItemCount(id, count).then((req) => {
-      setCartData(req.data.data);
-      setNumCartItem(req.data.numOfCartItems);
-    }).catch((err) => {
-      console.error(err);
-    }); 
-
+  function updateCartItem(id, count) {
+    if (count < 1) return;
+    updateCartItemCount(id, count)
+      .then((req) => {
+        setCartData(req.data.data);
+        setNumCartItem(req.data.numOfCartItems);
+      })
+      .catch((err) => console.error(err));
   }
-
-
 
   if (isLoading) {
     return (
-      <div className='flex justify-center items-center h-screen bg-gray-200 '>
-        <span className='loader'></span>
+      <div className="flex justify-center items-center h-screen bg-gray-50">
+        <span className="loader"></span>
       </div>
     );
   }
@@ -81,40 +73,85 @@ export default function Cart() {
     <>
       <Toaster />
       {CartData?.products?.length > 0 ? (
-        <div className='w-11/12 lg:w-10/12 mx-auto mb-6 mt-6'>
-          <div className='bg-white p-4 shadow-md rounded-md'>
-            <h2 className='text-3xl px-3 text-gray-800'>Shop Cart</h2>
-            <h2 className='pt-2 pb-5 px-3 text-active text-xl'>Total Cart Price: {CartData?.totalCartPrice} EGY</h2>
-            <button onClick={clearItems} className='px-3 rounded border-active border mb-3 ms-3 hover:bg-active hover:text-white'>
-              Clear
-            </button>
-            <div className='divide-y divide-gray-300'>
+        <div className="w-11/12 lg:w-9/12 mx-auto my-10">
+          <div className="bg-white p-8 shadow-xl rounded-2xl border border-gray-100">
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
+              <div>
+                <h2 className="text-3xl font-extrabold text-gray-800">
+                  Shopping Cart
+                </h2>
+                <h2 className="text-lg text-gray-600 mt-2">
+                  Total:{" "}
+                  <span className="font-bold text-green-600 text-xl">
+                    {CartData?.totalCartPrice} EGY
+                  </span>
+                </h2>
+              </div>
+              <button
+                onClick={clearItems}
+                className="mt-4 sm:mt-0 px-5 py-2 rounded-xl border border-red-500 text-red-500 hover:bg-red-500 hover:text-white font-medium transition"
+              >
+                Clear Cart
+              </button>
+            </div>
+
+            {/* Items */}
+            <div className="space-y-6">
               {CartData?.products?.map((item) => (
-                <div key={item._id} className='flex flex-wrap items-center gap-y-5 border-b border-gray-300'>
-                  <div className='w-full sm:w-2/12'>
-                    <img src={item.product.imageCover} className='w-full p-2' alt={item.product.title} />
+                <div
+                  key={item._id}
+                  className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center bg-gray-50 p-4 rounded-xl hover:shadow-md transition"
+                >
+                  {/* Image */}
+                  <div className="sm:col-span-2">
+                    <img
+                      src={item.product.imageCover}
+                      className="w-full h-28 object-contain rounded-lg border border-gray-200 shadow-sm bg-white"
+                      alt={item.product.title}
+                    />
                   </div>
-                  <div className='w-full sm:w-8/12 p-3'>
-                    <h2 className='text-gray-800'>{item.product.title}</h2>
-                    <h3 className='text-active'>Price: {item.price} EGY</h3>
+
+                  {/* Info */}
+                  <div className="sm:col-span-7">
+                    <h2 className="text-lg font-semibold text-gray-800 mb-2">
+                      {item.product.title}
+                    </h2>
+                    <p className="text-gray-600 mb-4">
+                      Price:{" "}
+                      <span className="font-medium text-green-600">
+                        {item.price} EGY
+                      </span>
+                    </p>
                     <button
                       onClick={() => removeItem(item.product._id)}
-                      className='text-red-600 me-auto border p-2 rounded hover:bg-red-600 hover:text-white border-red-600'
+                      className="flex items-center gap-2 px-4 py-2 rounded-lg border border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition font-medium"
                     >
-                      <i className='fa-regular fa-trash-can mr-2'></i>
-                      Remove
+                      <i className="fa-regular fa-trash-can"></i> Remove
                     </button>
                   </div>
-                  <div className='w-full sm:w-2/12 flex justify-center sm:justify-start pb-3'>
-                    <i
-                      onClick={() => updateCartItem(item.product._id, item.count + 1)}
-                      className='fa-solid border cursor-pointer rounded hover:bg-active hover:text-white border-active p-1 mx-2 fa-plus'
-                    ></i>
-                    <span>{item.count}</span>
-                    <i
-                      onClick={() => updateCartItem(item.product._id, item.count - 1)}
-                      className='fa-solid border cursor-pointer rounded hover:bg-active hover:text-white border-active p-1 mx-2 fa-minus'
-                    ></i>
+
+                  {/* Quantity */}
+                  <div className="sm:col-span-3 flex items-center justify-center sm:justify-end gap-4">
+                    <button
+                      onClick={() =>
+                        updateCartItem(item.product._id, item.count + 1)
+                      }
+                      className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-300 hover:bg-green-500 hover:text-white transition"
+                    >
+                      <i className="fa-solid fa-plus"></i>
+                    </button>
+                    <span className="text-gray-800 font-semibold text-lg">
+                      {item.count}
+                    </span>
+                    <button
+                      onClick={() =>
+                        updateCartItem(item.product._id, item.count - 1)
+                      }
+                      className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-300 hover:bg-red-500 hover:text-white transition"
+                    >
+                      <i className="fa-solid fa-minus"></i>
+                    </button>
                   </div>
                 </div>
               ))}
@@ -122,7 +159,9 @@ export default function Cart() {
           </div>
         </div>
       ) : (
-        <h4 className='text-center bg-red-600 text-white'>No data</h4>
+        <h4 className="text-center py-10 text-lg font-medium text-gray-500">
+          Your cart is empty
+        </h4>
       )}
     </>
   );
