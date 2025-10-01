@@ -41,17 +41,12 @@ export default function Navbar() {
     <nav className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-
           {/* Logo Section */}
           <Link
             to=""
             className="flex items-center space-x-2 flex-shrink-0 hover:opacity-80 transition-opacity"
           >
-            <img
-              src={logo}
-              className="h-10"
-              alt="FreshCart Logo"
-            />
+            <img src={logo} className="h-10" alt="FreshCart Logo" />
           </Link>
 
           {/* Desktop Navigation Links - Center */}
@@ -59,27 +54,33 @@ export default function Navbar() {
             <div className="hidden md:flex md:items-center md:space-x-8 flex-1 justify-center">
               <Link
                 to=""
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                className="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
               >
                 Home
               </Link>
               <Link
                 to="prodect"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                className="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
               >
                 Products
               </Link>
               <Link
                 to="category"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                className="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
               >
                 Categories
               </Link>
               <Link
                 to="brand"
-                className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                className="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
               >
                 Brands
+              </Link>
+              <Link
+                to="orders"
+                className="text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+              >
+                Orders
               </Link>
             </div>
           )}
@@ -91,7 +92,7 @@ export default function Navbar() {
                 {/* Cart Icon with Badge */}
                 <Link
                   to="cart"
-                  className="relative p-2 text-gray-700 hover:text-blue-600 transition-colors duration-200"
+                  className="relative p-2 text-gray-700 hover:text-green-600 transition-colors duration-200"
                 >
                   <svg
                     className="w-6 h-6"
@@ -107,7 +108,7 @@ export default function Navbar() {
                     />
                   </svg>
                   {numCartItem > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    <span className="absolute -top-1 -right-1 bg-green-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                       {numCartItem}
                     </span>
                   )}
@@ -126,7 +127,7 @@ export default function Navbar() {
                 {/* Login Button */}
                 <Link
                   to="login"
-                  className="text-gray-700 hover:text-blue-600 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                  className="text-gray-700 hover:text-green-600 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
                 >
                   Login
                 </Link>
@@ -134,7 +135,7 @@ export default function Navbar() {
                 {/* Sign Up Button */}
                 <Link
                   to="singUp"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200"
                 >
                   Sign Up
                 </Link>
@@ -146,7 +147,7 @@ export default function Navbar() {
           <button
             onClick={toggleMobileMenu}
             type="button"
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors duration-200"
+            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-green-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500 transition-colors duration-200"
             aria-controls="mobile-menu"
             aria-expanded={isMobileMenuOpen}
           >
@@ -191,7 +192,9 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={`md:hidden transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+          isMobileMenuOpen
+            ? "max-h-screen opacity-100"
+            : "max-h-0 opacity-0 overflow-hidden"
         }`}
         id="mobile-menu"
       >
@@ -202,18 +205,18 @@ export default function Navbar() {
               <Link
                 to=""
                 onClick={toggleMobileMenu}
-                className="text-gray-700 hover:bg-gray-100 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+                className="text-gray-700 hover:bg-gray-100 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
               >
                 Home
               </Link>
               <Link
                 to="cart"
                 onClick={toggleMobileMenu}
-                className="text-gray-700 hover:bg-gray-100 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 flex items-center justify-between"
+                className="text-gray-700 hover:bg-gray-100 hover:text-green-600 px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 flex items-center justify-between"
               >
                 <span>Cart</span>
                 {numCartItem > 0 && (
-                  <span className="bg-blue-600 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center">
+                  <span className="bg-green-600 text-white text-xs font-bold rounded-full h-6 w-6 flex items-center justify-center">
                     {numCartItem}
                   </span>
                 )}
@@ -221,23 +224,30 @@ export default function Navbar() {
               <Link
                 to="prodect"
                 onClick={toggleMobileMenu}
-                className="text-gray-700 hover:bg-gray-100 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+                className="text-gray-700 hover:bg-gray-100 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
               >
                 Products
               </Link>
               <Link
                 to="category"
                 onClick={toggleMobileMenu}
-                className="text-gray-700 hover:bg-gray-100 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+                className="text-gray-700 hover:bg-gray-100 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
               >
                 Categories
               </Link>
               <Link
                 to="brand"
                 onClick={toggleMobileMenu}
-                className="text-gray-700 hover:bg-gray-100 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+                className="text-gray-700 hover:bg-gray-100 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
               >
                 Brands
+              </Link>
+              <Link
+                to="orders"
+                onClick={toggleMobileMenu}
+                className="text-gray-700 hover:bg-gray-100 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+              >
+                Orders
               </Link>
 
               {/* Mobile Logout Button */}
@@ -259,14 +269,14 @@ export default function Navbar() {
               <Link
                 to="login"
                 onClick={toggleMobileMenu}
-                className="text-gray-700 hover:bg-gray-100 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
+                className="text-gray-700 hover:bg-gray-100 hover:text-green-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200"
               >
                 Login
               </Link>
               <Link
                 to="singUp"
                 onClick={toggleMobileMenu}
-                className="bg-blue-600 hover:bg-blue-700 text-white block px-3 py-2 rounded-md text-base font-medium text-center transition-colors duration-200"
+                className="bg-green-600 hover:bg-green-700 text-white block px-3 py-2 rounded-md text-base font-medium text-center transition-colors duration-200"
               >
                 Sign Up
               </Link>

@@ -107,10 +107,10 @@ export default function SignUp() {
         onBlur={registerForm.handleBlur}
         value={registerForm.values[name]}
         placeholder={placeholder}
-        className={`w-full px-4 py-3 rounded-lg border-2 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
+        className={`w-full px-4 py-3 rounded-lg border-2 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 ${
           registerForm.touched[name] && registerForm.errors[name]
             ? "border-red-500 bg-red-50"
-            : "border-gray-300 bg-gray-50 focus:bg-white focus:border-blue-500"
+            : "border-gray-300 bg-gray-50 focus:bg-white focus:border-green-500"
         }`}
       />
       {registerForm.touched[name] && registerForm.errors[name] && (
@@ -129,7 +129,7 @@ export default function SignUp() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-indigo-100 flex items-center justify-center px-4 py-12">
       <div className="max-w-md w-full">
         {/* Card Container */}
         <div className="bg-white rounded-2xl shadow-xl p-8">
@@ -202,7 +202,7 @@ export default function SignUp() {
             <button
               type="submit"
               disabled={!(registerForm.isValid && registerForm.dirty) || isLoading}
-              className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-lg shadow-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-blue-300"
+              className="w-full py-3 px-4 bg-gradient-to-r from-green-600 to-indigo-600 hover:from-green-700 hover:to-indigo-700 text-white font-semibold rounded-lg shadow-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-green-300"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center">
@@ -236,7 +236,7 @@ export default function SignUp() {
               Already have an account?{" "}
               <Link
                 to="/login"
-                className="font-medium text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+                className="font-medium text-green-600 hover:text-green-700 hover:underline transition-colors"
               >
                 Sign in
               </Link>

@@ -80,7 +80,7 @@ export default function Login() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-indigo-100 flex items-center justify-center px-4 py-12">
       <div className="max-w-md w-full">
         {/* Card Container */}
         <div className="bg-white rounded-2xl shadow-xl p-8">
@@ -129,10 +129,10 @@ export default function Login() {
                 onChange={loginForm.handleChange}
                 onBlur={loginForm.handleBlur}
                 value={loginForm.values.email}
-                className={`w-full px-4 py-3 rounded-lg border-2 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
+                className={`w-full px-4 py-3 rounded-lg border-2 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 ${
                   loginForm.touched.email && loginForm.errors.email
                     ? "border-red-500 bg-red-50"
-                    : "border-gray-300 bg-gray-50 focus:bg-white focus:border-blue-500"
+                    : "border-gray-300 bg-gray-50 focus:bg-white focus:border-green-500"
                 }`}
                 placeholder="you@example.com"
               />
@@ -169,10 +169,10 @@ export default function Login() {
                 onChange={loginForm.handleChange}
                 onBlur={loginForm.handleBlur}
                 value={loginForm.values.password}
-                className={`w-full px-4 py-3 rounded-lg border-2 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
+                className={`w-full px-4 py-3 rounded-lg border-2 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 ${
                   loginForm.touched.password && loginForm.errors.password
                     ? "border-red-500 bg-red-50"
-                    : "border-gray-300 bg-gray-50 focus:bg-white focus:border-blue-500"
+                    : "border-gray-300 bg-gray-50 focus:bg-white focus:border-green-500"
                 }`}
                 placeholder="Enter your password"
               />
@@ -198,7 +198,7 @@ export default function Login() {
             <div className="flex items-center justify-end">
               <Link
                 to="/ForgotPassword"
-                className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+                className="text-sm font-medium text-green-600 hover:text-green-700 hover:underline transition-colors"
               >
                 Forgot your password?
               </Link>
@@ -208,7 +208,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={!(loginForm.isValid && loginForm.dirty) || isLoading}
-              className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-lg shadow-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-blue-300"
+              className="w-full py-3 px-4 bg-gradient-to-r from-green-600 to-indigo-600 hover:from-green-700 hover:to-indigo-700 text-white font-semibold rounded-lg shadow-md transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-green-300"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center">
@@ -245,7 +245,7 @@ export default function Login() {
               Don't have an account?{" "}
               <Link
                 to="/singUp"
-                className="font-medium text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+                className="font-medium text-green-600 hover:text-green-700 hover:underline transition-colors"
               >
                 Sign up
               </Link>

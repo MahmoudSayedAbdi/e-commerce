@@ -18,6 +18,9 @@ import ProdectDetails from './Componant/ProdectDetails/ProdectDetails'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import CartContextProvider from './Context/CartContextProvider/CartContextProvider'
 
+// ✅ استيراد صفحة Orders
+import Orders from './Componant/Orders/Orders'
+
 function App() {
   let router = createBrowserRouter([
     {
@@ -27,6 +30,7 @@ function App() {
         { path: "category", element: <ProtectedRoutingProvider><Category /></ProtectedRoutingProvider> },
         { path: "cart", element: <ProtectedRoutingProvider><Cart /></ProtectedRoutingProvider> },
         { path: "brand", element: <ProtectedRoutingProvider><Brand /></ProtectedRoutingProvider> },
+        { path: "orders", element: <ProtectedRoutingProvider><Orders /></ProtectedRoutingProvider> },
         { path: "ProdectDetails/:id", element: <ProtectedRoutingProvider><ProdectDetails /></ProtectedRoutingProvider> },
         { path: "login", element: <Login /> },
         { path: "singUp", element: <SingUp /> },
@@ -37,22 +41,18 @@ function App() {
     }
   ])
 
-
   let client = new QueryClient
 
   return (
     <>
-
-
       <QueryClientProvider client={client}>
-        <ReactQueryDevtools></ReactQueryDevtools>
+        <ReactQueryDevtools />
         <AuthContextProvider>
           <CartContextProvider>
             <RouterProvider router={router} />
           </CartContextProvider>
         </AuthContextProvider>
       </QueryClientProvider>
-
     </>
   )
 }
